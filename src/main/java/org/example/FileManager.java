@@ -42,8 +42,6 @@ public class FileManager {
 
                 //add to list
                 transactionList.add(transaction);
-
-
             }
 
             //close the reader so evil peeps can't do nefarious things
