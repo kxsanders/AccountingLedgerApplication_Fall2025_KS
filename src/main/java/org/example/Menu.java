@@ -3,7 +3,8 @@ package org.example;
 import java.util.Scanner;
 
 public class Menu {
-    //Menu display and navigation logic. No switch case here.
+    //Displays each screen. No switch case here.
+    //Handles the user input for navigation between menus.
     //The goal is to return the user's choice to the Main class.
 
     //Scanner for user input
@@ -42,7 +43,6 @@ public class Menu {
         System.out.println("0) Back to LEDGER menu");
         System.out.println("Choose an option by typing the corresponding number.");
     }
-
 
     //GET user choice
     public static String getUserOption(){
