@@ -61,7 +61,14 @@ public class Transaction {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+
+    //may need to make own toString, will see once I have more data
+    public String toString() {
+        return date + " \\| " + time + " \\| " + description + " \\| " + vendor + "\\|" + amount;
+    }
 }
 
-//may need to make own toString override, will see once I have more data
+
+
 
