@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -62,4 +59,21 @@ public class FileManager {
 
         return transactionList;
     }
+
+    //write to the file so it can be saved in the CSV and keep it up to date.
+    public static void writeTransaction(Transaction t){
+        try{
+            FileWriter fileWriter = new FileWriter("src/main/resources/transactions.csv", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            //Format like the example. date|time|description|vendor|amount
+            bufferedWriter.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
+            bufferedWriter.newLine();
+
+        }
+        catch(IOException exception){
+            System.out.println("Error writing to file.");
+        }
+    }
 }
+
