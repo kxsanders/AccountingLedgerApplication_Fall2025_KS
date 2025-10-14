@@ -52,9 +52,13 @@ public class Reports {
     public static void yearToDate(List<Transaction> list) {
         int currentYear = LocalDate.now().getYear();
 
+        boolean found = false;
         for(Transaction t : list){
-            if(t.getDate().getYear() == currentYear){
+            LocalDate date = t.getDate();
+
+            if(date != null && date.getYear() == currentYear){
                 System.out.println(t);
+                found = true;
             }
         }
     }

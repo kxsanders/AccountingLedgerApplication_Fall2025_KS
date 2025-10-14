@@ -33,6 +33,7 @@ public class Main {
                     double depositAmount = Double.parseDouble(scanner.nextLine());
 
                     TransactionManager.addDeposit(depositDescription, depositVendor, depositAmount);
+                    transactionList = FileManager.getTransactions();
                     break;
 
                 case "P": //Make Payment
@@ -47,6 +48,7 @@ public class Main {
                     double paymentAmount = Double.parseDouble(scanner.nextLine());
 
                     TransactionManager.makePayment(paymentDescription, paymentVendor, paymentAmount);
+                    transactionList = FileManager.getTransactions();
                     break;
 
                 case "L": // Ledger
@@ -68,17 +70,37 @@ public class Main {
                                 String reportOption = Menu.getUserOption();
 
                                 switch(reportOption){
-                                    case
-                                    case
-                                    case
-                                    case
-                                    case
+                                    case "1":
+                                        Reports.monthToDate(transactionList);
+                                        break;
+                                    case "2":
+                                        Reports.previousMonth(transactionList);
+                                        break;
+                                    case "3":
+                                        Reports.yearToDate(transactionList);
+                                        break;
+                                    case "4":
+                                        Reports.previousYear(transactionList);
+                                        break;
+                                    case "5":
+                                        System.out.println("Enter vendor name: ");
+                                        String vendor = scanner.nextLine();
+                                        Reports.searchByVendor(transactionList, vendor);
+                                        break;
+                                    case "0":
+                                        inReports = false;
+                                        break;
+                                    default:
+                                        System.out.println("Invalid choice. Try again.");
                                 }
                             }
                         }
+                        else {
+                            Ledger.displayLedgerMenu(transactionList, ledgerOption);
+                        }
                     }
-
                     break;
+
                 case "X":
                     System.out.println("Thank you for banking with us! Goodbye.");
                     running = false;
@@ -88,8 +110,6 @@ public class Main {
 
 
             }
-
         }
-
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public class FileManager {
     //this handles all file read and write with the CSV file.
 
+
     //make the method
     public static List<Transaction> getTransactions(){
 
@@ -25,7 +26,8 @@ public class FileManager {
             while ((line = reader.readLine()) != null) {
 
                 //skip the first line
-                System.out.println(line);
+                //System.out.println(line);
+                ///commented this out so the transactions won't keep printing at the start.
 
                 //time to split
                 String[] data = line.split("\\|");
@@ -65,8 +67,14 @@ public class FileManager {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             //Format like the example. date|time|description|vendor|amount
-            bufferedWriter.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
+            bufferedWriter.write(t.getDate() + "|" + t.getTime() + "|"
+                    + t.getDescription() + "|" + t.getVendor() + "|" + String.format("%.2f", t.getAmount()));
+                    //String format %.2f so that it always prints 2 decimal points.
+
             bufferedWriter.newLine();
+
+            bufferedWriter.close(); //close it so it actually writes to file
+            //System.out.println("Transaction successfully written to CSV!");
 
         }
         catch(IOException exception){
