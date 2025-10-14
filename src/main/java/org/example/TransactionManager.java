@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TransactionManager {
-    //handles adding new deposits or payments
+    //This class handles adding new deposits or payments
+
+
 
     //Add deposit
     public static void addDeposit(String description, String vendor, double amount) {
@@ -14,7 +16,6 @@ public class TransactionManager {
         FileManager.writeTransaction(deposit);
         System.out.println("Deposit successfully added!");
     }
-
 
 
     //Make payment
