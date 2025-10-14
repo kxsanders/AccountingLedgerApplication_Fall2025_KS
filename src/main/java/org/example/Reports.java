@@ -3,6 +3,7 @@ package org.example;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class Reports {
     //This class looks at all transactions and filters them by time period or vendor name
 
@@ -19,6 +20,7 @@ public class Reports {
         }
     }
 
+    //PREVIOUS MONTH
     public static void previousMonth(List<Transaction> list){
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue(); //1-12. October is 10.
@@ -46,10 +48,41 @@ public class Reports {
         }
     }
 
-    public static void yearToDate(){}
+    //YEAR TO DATE
+    public static void yearToDate(List<Transaction> list) {
+        int currentYear = LocalDate.now().getYear();
 
-    public static void previousYear(){}
+        for(Transaction t : list){
+            if(t.getDate().getYear() == currentYear){
+                System.out.println(t);
+            }
+        }
+    }
 
-    public static  void searchByVendor(){}
+    //PREVIOUS YEAR
+    public static void previousYear(List<Transaction> list){
+        int lastYear = LocalDate.now().getYear() - 1;
+        for(Transaction t : list){
+            if(t.getDate().getYear() == lastYear){
+                System.out.println(t);
+            }
+        }
+    }
+
+    //SEARCH BY VENDOR
+    public static  void searchByVendor(List<Transaction> list, String vendor){
+
+        boolean found = false; //put this first assuming no transaction had been found yet
+
+        for(Transaction t : list){
+            if(t.getVendor().equalsIgnoreCase(vendor)){
+                System.out.println(t);
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No transactions found for vendor: " + vendor);
+        }
+    }
 
 }
