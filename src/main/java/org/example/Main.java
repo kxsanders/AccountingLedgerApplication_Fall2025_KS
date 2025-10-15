@@ -29,8 +29,19 @@ public class Main {
                     System.out.println("Enter vendor: ");
                     String depositVendor = scanner.nextLine();
 
-                    System.out.println("Enter amount: ");
-                    double depositAmount = Double.parseDouble(scanner.nextLine());
+                    double depositAmount = 0;
+                    boolean validDeposit = false;
+                    while (!validDeposit){
+                        System.out.println("Enter amount: ");
+                        String input = scanner.nextLine();
+                        try{
+                            depositAmount = Double.parseDouble(input);
+                            validDeposit = true;
+                        }
+                        catch(NumberFormatException exception) {
+                            System.out.println("Invalid amount. Please enter a valid number.");
+                        }
+                    }
 
                     TransactionManager.addDeposit(depositDescription, depositVendor, depositAmount);
                     transactionList = FileManager.getTransactions();
@@ -44,8 +55,20 @@ public class Main {
                     System.out.println("Enter vendor: ");
                     String paymentVendor = scanner.nextLine();
 
-                    System.out.println("Enter amount: ");
-                    double paymentAmount = Double.parseDouble(scanner.nextLine());
+                    double paymentAmount = 0;
+                    boolean validPayment = false;
+
+                    while(!validPayment) {
+                        System.out.println("Enter amount: ");
+                        String input = scanner.nextLine();
+                        try{
+                            paymentAmount = Double.parseDouble(input);
+                            validPayment = true;
+                        }
+                        catch(NumberFormatException exception){
+                            System.out.println("Invalid amount. Please enter a valid number.");
+                        }
+                    }
 
                     TransactionManager.makePayment(paymentDescription, paymentVendor, paymentAmount);
                     transactionList = FileManager.getTransactions();
